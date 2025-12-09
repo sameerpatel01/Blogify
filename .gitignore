@@ -1,0 +1,32 @@
+# Node
+node_modules/
+npm-debug.log
+
+# Local env
+.env
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Uploads / build artifacts
+public/uploads/
+uploads/
+
+# Local backups
+Blogify_backup/
+``` ````
+
+PowerShell commands to apply and push (choose A or B). If Blogify is a submodule and causing errors, see the short note after the commands.
+
+Method A — with GitHub CLI (recommended)
+````powershell
+# from repo root
+git add .gitignore
+# remove cached copies of things now ignored
+git rm -r --cached node_modules public/uploads uploads Blogify_backup || $null
+git add .
+git commit -m "Add .gitignore and remove local artifacts from index"
+# create remote and push (install gh and authenticate first)
+gh repo create YOUR-USER/YOUR-REPO --public --source=. --remote=origin --push
